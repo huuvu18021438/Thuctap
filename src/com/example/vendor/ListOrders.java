@@ -1,7 +1,11 @@
 package com.example.vendor;
 
 import com.example.ConnectPostgresql;
+import com.example.rmi.ChatFrame;
+import com.example.rmi.IServer;
+
 import java.awt.*;
+import java.rmi.Naming;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,6 +26,22 @@ public class ListOrders {
         });
 
         Button chat = new Button("Contact customer");
+
+        // RMI
+        /*chat.setBounds(290,30,95, 30);
+        chat.addActionListener(e -> {
+            EventQueue.invokeLater(() -> {
+                try {
+                    IServer server = (IServer) Naming.lookup("rmi://localhost"+"/"+"chat");
+                    ChatFrame frame = new ChatFrame(server, "Shop");
+                    frame.setVisible(true);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            });
+        });*/
+
+        // socket
         chat.setBounds(290,30,95, 30);
         chat.addActionListener(e -> {
             EventQueue.invokeLater(() -> {

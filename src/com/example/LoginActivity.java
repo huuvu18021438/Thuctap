@@ -70,6 +70,10 @@ public class LoginActivity {
                 e.printStackTrace();
             }
         });
+
+        signUp.addActionListener(e -> {
+            SignupActivity signupActivity = new SignupActivity();
+        });
     }
 
     public static int getUserID() {

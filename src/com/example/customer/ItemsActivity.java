@@ -2,8 +2,11 @@ package com.example.customer;
 
 import com.example.ConnectPostgresql;
 import com.example.LoginActivity;
+import com.example.rmi.ChatFrame;
+import com.example.rmi.IServer;
 
 import java.awt.*;
+import java.rmi.Naming;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,6 +15,8 @@ import java.sql.SQLException;
 public class ItemsActivity {
     public ItemsActivity(int shopID) {
         Frame f = new Frame("List items");
+
+        int customerID = LoginActivity.getUserID();
 
         Label label = new Label("Choose product:");
         label.setBounds(25,95,80,30);
@@ -23,6 +28,27 @@ public class ItemsActivity {
 
         Button chat = new Button("Contact store");
         chat.setBounds(300,30,80, 30);
+
+        // RMI
+        /*chat.addActionListener(e -> {
+            EventQueue.invokeLater(() -> {
+                try {
+                    String customer_name = "";
+                    Connection con = ConnectPostgresql.getConnection();
+                    PreparedStatement pst1 = con.prepareStatement("SELECT userName FROM \"User\" WHERE userID = '"+customerID+"'");
+                    ResultSet resultSet = pst1.executeQuery();
+                    resultSet.next();
+                    customer_name = resultSet.getString(1);
+                    IServer server = (IServer) Naming.lookup("rmi://localhost"+"/"+"chat");
+                    ChatFrame frame = new ChatFrame(server, customer_name);
+                    frame.setVisible(true);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            });
+        });*/
+
+        // socket
         chat.addActionListener(e -> {
             EventQueue.invokeLater(() -> {
                 try {
@@ -50,7 +76,6 @@ public class ItemsActivity {
         }
 
         b.addActionListener(e -> {
-            int customerID = LoginActivity.getUserID();
             try {
                 Connection connection = ConnectPostgresql.getConnection();
                 PreparedStatement pt= connection.prepareStatement("INSERT INTO Orders (customerID, shopID) VALUES('"+customerID+"', '"+shopID+"')");
