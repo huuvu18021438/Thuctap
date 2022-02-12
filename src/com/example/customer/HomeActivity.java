@@ -27,7 +27,7 @@ public class HomeActivity {
             try {
                 ArrayList<String> shopName = new ArrayList<>();
                 Connection connection = ConnectPostgresql.getConnection();
-                PreparedStatement st = connection.prepareStatement("SELECT shopID FROM products WHERE productName='"+textSearch+"'",
+                PreparedStatement st = connection.prepareStatement("SELECT shopID FROM products WHERE productName LIKE '%"+textSearch+"%'",
                         ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
                 ResultSet resultSet = st.executeQuery();
                 while (resultSet.next()) {
