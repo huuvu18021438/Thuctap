@@ -94,7 +94,6 @@ public class SignupActivity {
                         textName.setText("");
                         textPhoneNB.setText("");
                         textPass.setText("");
-                        cb1.setState(false);
                     } else if (cb2.getState()) {
                         Connection con = ConnectPostgresql.getConnection();
                         PreparedStatement pst = con.prepareStatement("INSERT INTO \"User\" (userName, userPhoneNB, userPassword, userRole) " +
@@ -120,9 +119,7 @@ public class SignupActivity {
                         textName.setText("");
                         textPhoneNB.setText("");
                         textPass.setText("");
-                        cb2.setState(false);
-                        f.remove(nameShop);
-                        f.remove(shopName);
+                        nameShop.setText("");
                     } else {
                         String msg = "Signup failed, " +
                                 "Please complete all information";

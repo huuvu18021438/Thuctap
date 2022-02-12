@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="store_database:jar2">
+    <output-path>$USER_HOME$/Dropbox (Old)/My PC (DESKTOP-0QUPRT6)/Desktop</output-path>
+    <root id="archive" name="store_database.jar">
+      <element id="module-output" name="store_database" />
+      <element id="extracted-dir" path="$USER_HOME$/Dropbox (Old)/My PC (DESKTOP-0QUPRT6)/Desktop/postgresql-42.3.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
