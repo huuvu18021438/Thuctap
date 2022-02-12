@@ -111,7 +111,6 @@ public class ChatClient implements Runnable {
                 }
             }
             f.setVisible(false);
-            stop();
         });
 
         f.add(l); f.add(l1); f.add(t); f.add(t1); f.add(bt_disconnect);
@@ -135,16 +134,6 @@ public class ChatClient implements Runnable {
                 }
             }
         } catch (IOException io) {}
-    }
-
-    public void stop() {
-        try {
-            in.close();
-            out.close();
-            clientSocket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     private void token(String message) {
